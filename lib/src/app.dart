@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:brawlteca/src/pages/login_page.dart';
 import 'package:brawlteca/src/pages/main_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: "main",
       routes: {
-        "main": (_) => MainPage(),
+        "main": (_) => LoginPage(),
       },
     );
   }
