@@ -47,6 +47,8 @@ class _MainPageState extends State<MainPage> {
               child: BottomNavigationBar(
                 elevation: 0,
                 backgroundColor: Colors.transparent,
+                type: BottomNavigationBarType.fixed,
+                // landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
                 onTap: (index) {
                   setState(() {
                     _currentIndex = index;
@@ -57,14 +59,25 @@ class _MainPageState extends State<MainPage> {
                 currentIndex: _currentIndex,
                 items: [
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
+                    icon: Icon(Icons.home_outlined),
                     activeIcon: Icon(Icons.home),
                     label: 'Inicio',
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.calendar_today_rounded),
-                    label: 'Events',
-                  )
+                    icon: Icon(Icons.book_outlined),
+                    activeIcon: Icon(Icons.book_rounded),
+                    label: 'Wiki',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.calendar_today_outlined),
+                    activeIcon: Icon(Icons.calendar_today),
+                    label: 'Eventos',
+                  ),
+                  // BottomNavigationBarItem(
+                  //   icon: Icon(Icons.home),
+                  //   activeIcon: Icon(Icons.home),
+                  //   label: 'Inicio',
+                  // ),
                 ],
               ),
             ),
