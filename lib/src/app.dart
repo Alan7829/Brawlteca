@@ -2,6 +2,7 @@
 
 import 'package:brawlteca/src/pages/login_page.dart';
 import 'package:brawlteca/src/pages/main_page.dart';
+import 'package:brawlteca/src/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,9 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: "main",
+      
+      debugShowCheckedModeBanner: false,
+      initialRoute: "splash",
       routes: {
-        "main": (_) => LoginPage(),
+        "splash": (_) => SplashScreen(),
+        "login": (_) => LoginPage(),
+        "main": (_) => MainPage(),
       },
     );
   }
