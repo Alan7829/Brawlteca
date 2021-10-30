@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:brawlteca/src/pages/home_page.dart';
+import 'package:brawlteca/src/pages/wiki_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(26, 56, 102, 1),
       body: _callPage(_currentIndex),
       bottomNavigationBar: Container(
         height: 70,
@@ -35,9 +37,9 @@ class _MainPageState extends State<MainPage> {
             ),
             boxShadow: [
               BoxShadow(
-                blurRadius: 15,
+                blurRadius: 17,
                 color: Colors.black,
-                spreadRadius: .5,
+                spreadRadius: .7,
               )
             ],
           ),
@@ -91,6 +93,8 @@ class _MainPageState extends State<MainPage> {
     switch (currentPage) {
       case 0:
         return const HomePage();
+      case 1:
+        return const WikiPage();
 
       default:
         return const HomePage();
