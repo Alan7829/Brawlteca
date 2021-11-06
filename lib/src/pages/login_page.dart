@@ -126,7 +126,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _btn(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, 'main');
+      },
       child: Text(
         'Login',
         style: TextStyle(
@@ -148,21 +150,17 @@ class _LoginPageState extends State<LoginPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          
           new Image.asset(
             'assets/google.jpg',
             height: 40.0,
             width: 50.0,
-            
-            
           ),
-Padding(padding: const EdgeInsets.only(right: 20.0)),
+          Padding(padding: const EdgeInsets.only(right: 20.0)),
           Text(
             'Login with Google',
             style: TextStyle(
               fontFamily: 'nougat',
               fontSize: 22,
-              
             ),
           ),
         ],
