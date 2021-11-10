@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:brawlteca/src/pages/events_page.dart';
 import 'package:brawlteca/src/pages/home_page.dart';
 import 'package:brawlteca/src/pages/player_page.dart';
 import 'package:brawlteca/src/pages/wiki_page.dart';
@@ -96,6 +97,8 @@ class _MainPageState extends State<MainPage> {
         return const PlayerPage();
       case 1:
         return const WikiPage();
+      case 2:
+        return const EventsPage();
 
       default:
         return const HomePage();
