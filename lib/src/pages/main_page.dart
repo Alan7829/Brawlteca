@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:brawlteca/src/pages/home_page.dart';
+import 'package:brawlteca/src/pages/player_page.dart';
 import 'package:brawlteca/src/pages/wiki_page.dart';
 import 'package:flutter/material.dart';
 
@@ -92,7 +93,7 @@ class _MainPageState extends State<MainPage> {
   Widget _callPage(int currentPage) {
     switch (currentPage) {
       case 0:
-        return const HomePage();
+        return const PlayerPage();
       case 1:
         return const WikiPage();
 
