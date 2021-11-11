@@ -3,6 +3,7 @@
 import 'package:brawlteca/src/pages/login_page.dart';
 import 'package:brawlteca/src/pages/main_page.dart';
 import 'package:brawlteca/src/pages/splash_screen.dart';
+import 'package:brawlteca/src/pages/onlybrawl_page.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "splash",
       routes: {
         "splash": (_) => SplashScreen(),
-        "login": (_) => LoginPage(),
+        "login": (_) => OnlyBrawl(),
         "main": (_) => MainPage(),
       },
     );
