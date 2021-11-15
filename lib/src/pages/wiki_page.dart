@@ -93,6 +93,13 @@ class _WikiPageState extends State<WikiPage> {
                                   child: ListTile(
                                     leading: Icon(Icons.image),
                                     minLeadingWidth: .5,
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        'brawl',
+                                        arguments: data[idx]['id'],
+                                      );
+                                    },
                                     title: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,

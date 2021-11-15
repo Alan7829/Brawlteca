@@ -21,8 +21,8 @@ class BrawlersBloc {
         },
       );
       final brawlers = jsonDecode(response.body);
-      print('STATUS: ${response.statusCode}');
-      print('BODY: ${response.body}');
+      // print('STATUS: ${response.statusCode}');
+      // print('BODY: ${response.body}');
       _brawlerController.sink.add(brawlers);
     } catch (e) {
       throw e;

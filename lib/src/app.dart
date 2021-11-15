@@ -12,13 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       debugShowCheckedModeBanner: false,
       initialRoute: "splash",
       routes: {
         "splash": (_) => SplashScreen(),
-        "login": (_) => OnlyBrawl(),
+        "login": (_) => LoginPage(),
         "main": (_) => MainPage(),
+        "brawl": (_) => OnlyBrawl(),
       },
     );
   }
