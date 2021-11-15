@@ -107,6 +107,7 @@ class _WikiPageState extends State<WikiPage> {
                                         Text(
                                           data[idx]['name'],
                                           style: TextStyle(
+                                            color: Colors.white,
                                             fontFamily: "nougat",
                                             fontSize: 20,
                                           ),
