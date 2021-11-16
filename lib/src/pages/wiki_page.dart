@@ -46,25 +46,6 @@ class _WikiPageState extends State<WikiPage> {
                           fontSize: 17,
                           colorFore: Color.fromRGBO(115, 203, 241, 1),
                         ),
-                        Container(
-                          child: Row(
-                            children: <Widget>[
-                              TextBorderWidget(
-                                text: "Win Rate",
-                                fontSize: 17,
-                                colorFore: Color.fromRGBO(115, 203, 241, 1),
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              TextBorderWidget(
-                                text: "Pick Rate",
-                                fontSize: 17,
-                                colorFore: Color.fromRGBO(115, 203, 241, 1),
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                     StreamBuilder(
@@ -73,14 +54,14 @@ class _WikiPageState extends State<WikiPage> {
                           (BuildContext context, AsyncSnapshot<Map> snapshot) {
                         if (!snapshot.hasData) bloc.getAll();
                         if (snapshot.hasData) {
-                          final data = snapshot.data!['items'];
+                          final data = snapshot.data!['list'];
                           return Container(
                             height: screen.height * 0.698,
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               itemCount: data.length,
                               itemBuilder: (_, int idx) {
-                                int _brawlId = data[idx]['id'];
+                                // int _brawlId = data[idx]['id'];
                                 return Container(
                                   decoration: BoxDecoration(
                                     color: Color.fromRGBO(14, 95, 176, 1),
@@ -91,8 +72,8 @@ class _WikiPageState extends State<WikiPage> {
                                     ),
                                   ),
                                   child: ListTile(
-                                    leading: Icon(Icons.image),
-                                    minLeadingWidth: .5,
+                                    // leading: Icon(Icons.image),
+                                    // minLeadingWidth: .5,
                                     onTap: () {
                                       Navigator.pushNamed(
                                         context,
@@ -100,41 +81,57 @@ class _WikiPageState extends State<WikiPage> {
                                         arguments: data[idx]['id'],
                                       );
                                     },
-                                    title: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Text(
-                                          data[idx]['name'],
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: "nougat",
-                                            fontSize: 20,
-                                          ),
-                                        ),
-                                        Container(
-                                          child: Row(
-                                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    title: TextBorderWidget(
+                                      text: data[idx]['name'],
+                                      colorFore: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                    subtitle: Container(
+                                      child: Column(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Row(
                                             children: <Widget>[
-                                              Text(
-                                                '67%',
-                                                style: TextStyle(
-                                                    fontFamily: "nougat",
-                                                    fontSize: 20),
-                                              ),
-                                              SizedBox(
-                                                width: 30,
+                                              TextBorderWidget(
+                                                text: "Rarity: ",
+                                                fontSize: 17,
+                                                colorFore: Color.fromRGBO(
+                                                    115, 203, 241, 1),
                                               ),
                                               Text(
-                                                '3.1%',
+                                                data[idx]['rarity']['name'],
                                                 style: TextStyle(
-                                                    fontFamily: "nougat",
-                                                    fontSize: 20),
+                                                  fontFamily: "nougat",
+                                                  fontSize: 20,
+                                                ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ],
+                                          Row(
+                                            children: <Widget>[
+                                              TextBorderWidget(
+                                                text: "Class: ",
+                                                fontSize: 17,
+                                                colorFore: Color.fromRGBO(
+                                                    115, 203, 241, 1),
+                                              ),
+                                              Text(
+                                                data[idx]['class']['name'],
+                                                style: TextStyle(
+                                                  fontFamily: "nougat",
+                                                  fontSize: 20,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    trailing: Image.network(
+                                      data[idx]['imageUrl'],
+                                      scale: 1,
+                                      width: 50,
+                                      height: 50,
                                     ),
                                   ),
                                 );
