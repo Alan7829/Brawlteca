@@ -89,8 +89,8 @@ class _OnlyBrawlState extends State<OnlyBrawl> {
                         ),
                       ),
                       Positioned(
-                        top: screen.height * 0.19,
-                        right: -10,
+                        top: screen.height * 0.12,
+                        right: -55,
                         child: Image.asset(
                           'assets/brawl.png',
                           height: 200,
@@ -101,7 +101,7 @@ class _OnlyBrawlState extends State<OnlyBrawl> {
                         bottom: 0,
                         child: Container(
                           width: screen.width,
-                          height: screen.height * 0.5,
+                          height: screen.height * 0.55,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -332,7 +332,7 @@ class _OnlyBrawlState extends State<OnlyBrawl> {
                                         ),
                                       ),
                                       Container(
-                                        width: screen.width * 0.8,
+                                        width: screen.width * 0.9,
                                         child: Text(
                                           data['description'],
                                           style: TextStyle(
@@ -351,7 +351,7 @@ class _OnlyBrawlState extends State<OnlyBrawl> {
                         ),
                       ),
                       Positioned(
-                        top: (screen.height * 0.3),
+                        top: (screen.height * 0.235),
                         left: (screen.width / 2) - 100,
                         child: ClipOval(
                           child: Image.network(
