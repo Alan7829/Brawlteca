@@ -199,47 +199,59 @@ class _OnlyBrawlState extends State<OnlyBrawl> {
                                         width: screen.width * 1,
                                         child: Row(
                                           children: <Widget>[
-                                            for (var item in list)
-                                              Card(
-                                                color: Colors.blueAccent,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
+                                            if (list.isEmpty)
+                                              Text(
+                                                'Without starpower now',
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: Colors.red[300],
                                                 ),
-                                                margin: EdgeInsets.all(3),
-                                                elevation: 10,
-                                                child: Row(
-                                                  children: [
-                                                    Padding(
+                                              )
+                                            else
+                                              for (var item in list)
+                                                Card(
+                                                  color: Colors.blueAccent,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  margin: EdgeInsets.all(3),
+                                                  elevation: 10,
+                                                  child: Row(
+                                                    children: [
+                                                      Padding(
                                                         padding:
                                                             const EdgeInsets
                                                                 .only(
-                                                      top: 5.0,
-                                                      right: 2.0,
-                                                    )),
-                                                    Text(
-                                                      item['name'] + " ",
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                                          top: 5.0,
+                                                          right: 2.0,
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Image.network(
-                                                      item['imageUrl'],
-                                                      width: 20,
-                                                      height: 20,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                        top: 5.0,
+                                                      Text(
+                                                        item['name'],
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                      Image.network(
+                                                        item['imageUrl'],
+                                                        width: 20,
+                                                        height: 20,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          top: 5.0,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              )
                                           ],
                                         ),
                                       ),
@@ -269,46 +281,58 @@ class _OnlyBrawlState extends State<OnlyBrawl> {
                                         width: screen.width * 1,
                                         child: Row(
                                           children: <Widget>[
-                                            for (var item in listGadgets)
-                                              Card(
-                                                color: Colors.blueAccent,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                margin: EdgeInsets.all(2),
-                                                elevation: 10,
-                                                child: Row(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                        top: 5.0,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      item['name'] + " ",
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    Image.network(
-                                                      item['imageUrl'],
-                                                      width: 20,
-                                                      height: 20,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                        top: 5.0,
-                                                      ),
-                                                    ),
-                                                  ],
+                                            if (listGadgets.isEmpty)
+                                              Text(
+                                                'Without gadgets now',
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: Colors.red[300],
                                                 ),
                                               )
+                                            else
+                                              for (var item in listGadgets)
+                                                Card(
+                                                  color: Colors.blueAccent,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  margin: EdgeInsets.all(2),
+                                                  elevation: 10,
+                                                  child: Row(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          top: 5.0,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        item['name'] + " ",
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      Image.network(
+                                                        item['imageUrl'],
+                                                        width: 20,
+                                                        height: 20,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          top: 5.0,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
                                           ],
                                         ),
                                       ),
