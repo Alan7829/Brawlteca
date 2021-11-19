@@ -3,21 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:brawlteca/widgets/text_border.dart';
 import 'package:intl/intl.dart';
 
-class EventsPage extends StatefulWidget {
-  const EventsPage({Key? key}) : super(key: key);
+class EventsPageUpcoming extends StatefulWidget {
+  const EventsPageUpcoming({Key? key}) : super(key: key);
 
   @override
-  _EventsPageState createState() => _EventsPageState();
+  _EventsPageUpcomingState createState() => _EventsPageUpcomingState();
 }
 
-class _EventsPageState extends State<EventsPage> {
+class _EventsPageUpcomingState extends State<EventsPageUpcoming> {
   final bloc = EventsBloc();
-
   @override
   Widget build(BuildContext context) {
-
     final screen = MediaQuery.of(context).size;
-
     return SafeArea(
       child: RefreshIndicator(
         onRefresh: () => bloc.getAll(),
@@ -40,7 +37,6 @@ class _EventsPageState extends State<EventsPage> {
                 padding: EdgeInsets.only(top: 20, bottom: 0),
                 child: Column(
                   children: <Widget>[
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -57,7 +53,7 @@ class _EventsPageState extends State<EventsPage> {
                           (BuildContext context, AsyncSnapshot<Map> snapshot) {
                         if (!snapshot.hasData) bloc.getAll();
                         if (snapshot.hasData) {
-                          final data = snapshot.data!['active'];
+                          final data = snapshot.data!['upcoming'];
 
                           return Container(
                             height: screen.height * 0.698,
@@ -67,7 +63,15 @@ class _EventsPageState extends State<EventsPage> {
                               itemBuilder: (_, int idx) {
                                 // int _brawlId = data[idx]['id'];
                                 return SizedBox(
-                             
+                                  // decoration: BoxDecoration(
+                                  //   color: Colors.black,
+                                  //   border: Border.all(
+                                  //     color: Colors.black,
+                                  //     style: BorderStyle.solid,
+                                  //     width: 2.5,
+
+                                  //   ),
+                                  // ),
 
                                   child: Card(
                                     
@@ -111,11 +115,11 @@ class _EventsPageState extends State<EventsPage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "Termina " +
+                                                "Inicia " +
                                                     DateFormat('yyyy-MM-dd')
                                                         .format(DateTime.parse(
                                                             data[idx]
-                                                                ['endTime'])),
+                                                                ['startTime'])),
                                                 style: TextStyle(
                                                   fontFamily: "nougat",
                                                   fontSize: 25,
@@ -160,9 +164,6 @@ class _EventsPageState extends State<EventsPage> {
                         return Center(child: CircularProgressIndicator());
                       },
                     ),
-
-                    Card(),
-
                   ],
                 ),
               ),
@@ -173,3 +174,6 @@ class _EventsPageState extends State<EventsPage> {
     );
   }
 }
+
+
+
