@@ -12,9 +12,12 @@ class EventsPage extends StatefulWidget {
 
 class _EventsPageState extends State<EventsPage> {
   final bloc = EventsBloc();
+
   @override
   Widget build(BuildContext context) {
+
     final screen = MediaQuery.of(context).size;
+
     return SafeArea(
       child: RefreshIndicator(
         onRefresh: () => bloc.getAll(),
@@ -37,6 +40,7 @@ class _EventsPageState extends State<EventsPage> {
                 padding: EdgeInsets.only(top: 20, bottom: 0),
                 child: Column(
                   children: <Widget>[
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -156,6 +160,9 @@ class _EventsPageState extends State<EventsPage> {
                         return Center(child: CircularProgressIndicator());
                       },
                     ),
+
+                    Card(),
+
                   ],
                 ),
               ),
@@ -166,4 +173,3 @@ class _EventsPageState extends State<EventsPage> {
     );
   }
 }
-
