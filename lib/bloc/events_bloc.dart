@@ -19,7 +19,6 @@ class EventsBloc {
         Uri.parse('${_url}'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-
         },
       );
       final events = jsonDecode(response.body);
