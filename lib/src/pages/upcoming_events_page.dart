@@ -1,16 +1,17 @@
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names
+
 import 'package:brawlteca/bloc/events_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:brawlteca/widgets/text_border.dart';
 import 'package:intl/intl.dart';
 
-class EventsPageUpcoming extends StatefulWidget {
-  const EventsPageUpcoming({Key? key}) : super(key: key);
+class UpcomingEventsPage extends StatefulWidget {
+  const UpcomingEventsPage({Key? key}) : super(key: key);
 
   @override
-  _EventsPageUpcomingState createState() => _EventsPageUpcomingState();
+  _UpcomingEventsPageState createState() => _UpcomingEventsPageState();
 }
 
-class _EventsPageUpcomingState extends State<EventsPageUpcoming> {
+class _UpcomingEventsPageState extends State<UpcomingEventsPage> {
   final bloc = EventsBloc();
   @override
   Widget build(BuildContext context) {
@@ -19,34 +20,14 @@ class _EventsPageUpcomingState extends State<EventsPageUpcoming> {
       child: RefreshIndicator(
         onRefresh: () => bloc.getAll(),
         child: Container(
-          margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
           color: Color.fromRGBO(26, 56, 102, 1),
           child: Column(
             children: <Widget>[
-              Text(
-                'Eventos',
-                style: TextStyle(
-                  color: Color.fromRGBO(250, 188, 59, .8),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  fontFamily: "nougat",
-                ),
-              ),
               SizedBox(),
               Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 0),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: Column(
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        TextBorderWidget(
-                          text: "Eventos Actuales",
-                          fontSize: 17,
-                          colorFore: Color.fromRGBO(115, 203, 241, 1),
-                        ),
-                      ],
-                    ),
                     StreamBuilder(
                       stream: bloc.eventsStream,
                       builder:
@@ -54,32 +35,18 @@ class _EventsPageUpcomingState extends State<EventsPageUpcoming> {
                         if (!snapshot.hasData) bloc.getAll();
                         if (snapshot.hasData) {
                           final data = snapshot.data!['upcoming'];
-
                           return Container(
-                            height: screen.height * 0.698,
+                            height: screen.height * 0.77,
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               itemCount: data.length,
                               itemBuilder: (_, int idx) {
-                                // int _brawlId = data[idx]['id'];
                                 return SizedBox(
-                                  // decoration: BoxDecoration(
-                                  //   color: Colors.black,
-                                  //   border: Border.all(
-                                  //     color: Colors.black,
-                                  //     style: BorderStyle.solid,
-                                  //     width: 2.5,
-
-                                  //   ),
-                                  // ),
-
                                   child: Card(
-                                    
-                                    
-                                    
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10.0),
-                                      side: BorderSide(color: Colors.white, width: 2),
+                                      side: BorderSide(
+                                          color: Colors.white, width: 2),
                                     ),
                                     color: Color(int.parse(
                                             data[idx]['map']['gameMode']
@@ -106,7 +73,7 @@ class _EventsPageUpcomingState extends State<EventsPageUpcoming> {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 12.0),
+                                                left: 10.0),
                                           ),
                                           Column(
                                             mainAxisAlignment:
@@ -122,7 +89,7 @@ class _EventsPageUpcomingState extends State<EventsPageUpcoming> {
                                                                 ['startTime'])),
                                                 style: TextStyle(
                                                   fontFamily: "nougat",
-                                                  fontSize: 25,
+                                                  fontSize: 23,
                                                   color: Colors.white,
                                                 ),
                                               ),
@@ -131,7 +98,7 @@ class _EventsPageUpcomingState extends State<EventsPageUpcoming> {
                                                     ['name'],
                                                 style: TextStyle(
                                                   fontFamily: "nougat",
-                                                  fontSize: 35,
+                                                  fontSize: 26,
                                                   color: Colors.white,
                                                 ),
                                               ),
@@ -139,7 +106,7 @@ class _EventsPageUpcomingState extends State<EventsPageUpcoming> {
                                                 data[idx]['map']['name'],
                                                 style: TextStyle(
                                                   fontFamily: "nougat",
-                                                  fontSize: 25,
+                                                  fontSize: 23,
                                                   color: Colors.white,
                                                 ),
                                               ),
@@ -174,6 +141,3 @@ class _EventsPageUpcomingState extends State<EventsPageUpcoming> {
     );
   }
 }
-
-
-
