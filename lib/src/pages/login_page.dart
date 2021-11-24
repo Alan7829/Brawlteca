@@ -1,5 +1,6 @@
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, unnecessary_new
+
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:brawlteca/bloc/login_bloc.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,12 +11,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _userEmailController = TextEditingController();
-  TextEditingController _userPasswordController = TextEditingController();
   final login = LoginBloc();
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
+    final screen = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color.fromRGBO(26, 56, 102, 1),
       body: Center(
@@ -26,12 +25,19 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                Image.asset(
+                  'assets/brawlers.png',
+                  scale: 1,
+                  width: screen.width * 0.7,
+                  height: screen.height * 0.27,
+                ),
                 Text(
                   'INICIO DE SESIÓN',
                   style: TextStyle(
-                      fontFamily: "nougat",
-                      fontSize: 30,
-                      color: Color.fromRGBO(250, 188, 59, .8)),
+                    fontFamily: "nougat",
+                    fontSize: 30,
+                    color: Color.fromRGBO(250, 188, 59, .8),
+                  ),
                 ),
                 _widgetsSignIn(context),
               ],
@@ -47,104 +53,11 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _textFormField(context),
             Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-            _btn(context),
             _btnGoogle(context)
           ],
         ),
       );
-
-  Widget _textFormField(BuildContext context) {
-    return Container(
-      child: Form(
-        child: Column(
-          children: <Widget>[
-            Padding(padding: EdgeInsets.symmetric(vertical: 20)),
-            _email(context),
-            Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-            _pass(context),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _email(BuildContext context) {
-    return TextFormField(
-      controller: _userEmailController,
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(
-          Icons.email_outlined,
-          color: Colors.black,
-          size: 10,
-        ),
-        hintText: 'ejemplo@correo.com',
-        labelText: 'Email',
-        labelStyle: TextStyle(
-          color: Colors.white,
-          fontFamily: 'nougat',
-          fontSize: 25,
-        ),
-        fillColor: Colors.white,
-        hintStyle: TextStyle(color: Colors.grey),
-      ),
-      style: TextStyle(
-        fontFamily: "gibson",
-        color: Colors.white,
-        fontSize: 20,
-      ),
-      obscureText: false,
-    );
-  }
-
-  Widget _pass(BuildContext context) {
-    return TextFormField(
-      controller: _userPasswordController,
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(
-          Icons.email_outlined,
-          color: Colors.black,
-          size: 10,
-        ),
-        hintText: 'Contraseña',
-        labelText: 'Contraseña',
-        labelStyle: TextStyle(
-          color: Colors.white,
-          fontFamily: 'nougat',
-          fontSize: 25,
-        ),
-        hintStyle: TextStyle(color: Colors.grey),
-      ),
-      style: TextStyle(
-        fontFamily: "gibson",
-        color: Colors.white,
-        fontSize: 20,
-      ),
-      obscureText: true,
-    );
-  }
-
-  Widget _btn(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.pushNamed(context, 'main');
-      },
-      child: Text(
-        'Login',
-        style: TextStyle(
-          fontFamily: 'nougat',
-          fontSize: 25,
-        ),
-      ),
-      style: ElevatedButton.styleFrom(
-        primary: Color(0xFAFABC3B), // background
-        onPrimary: Colors.white, // foreground
-      ),
-    );
-  }
 
   Widget _btnGoogle(BuildContext context) {
     return ElevatedButton(
@@ -152,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
         final result = await login.signInGoogle();
         print("DATA: ${result}");
         if (result) {
-          Navigator.of(context).pushNamed("welcome");
+          Navigator.of(context).pushReplacementNamed("main");
         } else {
           final scaffold = ScaffoldMessenger.maybeOf(context);
 
