@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:brawlteca/bloc/login_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController _userEmailController = TextEditingController();
   TextEditingController _userPasswordController = TextEditingController();
+  final login = LoginBloc();
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
@@ -145,7 +148,18 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _btnGoogle(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () async {
+        final result = await login.signInGoogle();
+        print("DATA: ${result}");
+        if (result) {
+          Navigator.of(context).pushNamed("welcome");
+        } else {
+          final scaffold = ScaffoldMessenger.maybeOf(context);
+
+          scaffold!
+              .showSnackBar(SnackBar(content: Text("Error al iniciar sesión")));
+        }
+      },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
