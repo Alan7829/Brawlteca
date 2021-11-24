@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
 import 'package:brawlteca/bloc/brawlers_bloc.dart';
+import 'package:brawlteca/src/pages/brawlers_page.dart';
+import 'package:brawlteca/src/pages/gamemodes_page.dart';
 import 'package:brawlteca/widgets/text_border.dart';
 import 'package:flutter/material.dart';
 
@@ -11,142 +13,53 @@ class WikiPage extends StatefulWidget {
   _WikiPageState createState() => _WikiPageState();
 }
 
-class _WikiPageState extends State<WikiPage> {
-  final bloc = BrawlersBloc();
+class _WikiPageState extends State<WikiPage> with TickerProviderStateMixin {
+  late TabController _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
     return SafeArea(
-      child: RefreshIndicator(
-        onRefresh: () => bloc.getAll(),
-        child: Container(
-          margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
-          color: Color.fromRGBO(26, 56, 102, 1),
-          child: Column(
-            children: <Widget>[
-              Text(
+      child: Scaffold(
+        backgroundColor: Color.fromRGBO(26, 56, 102, 1),
+        appBar: TabBar(
+          controller: _tabController,
+          tabs: <Widget>[
+            Tab(
+              child: Text(
                 'Lista de Brawlers',
                 style: TextStyle(
                   color: Color.fromRGBO(250, 188, 59, .8),
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: 18,
                   fontFamily: "nougat",
                 ),
               ),
-              SizedBox(),
-              Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 0),
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        TextBorderWidget(
-                          text: "Brawler",
-                          fontSize: 17,
-                          colorFore: Color.fromRGBO(115, 203, 241, 1),
-                        ),
-                      ],
-                    ),
-                    StreamBuilder(
-                      stream: bloc.brawlersStream,
-                      builder:
-                          (BuildContext context, AsyncSnapshot<Map> snapshot) {
-                        if (!snapshot.hasData) bloc.getAll();
-                        if (snapshot.hasData) {
-                          final data = snapshot.data!['list'];
-                          return Container(
-                            height: screen.height * 0.698,
-                            child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              itemCount: data.length,
-                              itemBuilder: (_, int idx) {
-                                // int _brawlId = data[idx]['id'];
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(14, 95, 176, 1),
-                                    border: Border.all(
-                                      color: Color.fromRGBO(2, 28, 108, 1),
-                                      style: BorderStyle.solid,
-                                      width: 2.5,
-                                    ),
-                                  ),
-                                  child: ListTile(
-                                    // leading: Icon(Icons.image),
-                                    // minLeadingWidth: .5,
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        'brawl',
-                                        arguments: data[idx]['id'],
-                                      );
-                                    },
-                                    title: TextBorderWidget(
-                                      text: data[idx]['name'],
-                                      colorFore: Colors.white,
-                                      fontSize: 18,
-                                    ),
-                                    subtitle: Container(
-                                      child: Column(
-                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Row(
-                                            children: <Widget>[
-                                              TextBorderWidget(
-                                                text: "Rarity: ",
-                                                fontSize: 17,
-                                                colorFore: Color.fromRGBO(
-                                                    115, 203, 241, 1),
-                                              ),
-                                              Text(
-                                                data[idx]['rarity']['name'],
-                                                style: TextStyle(
-                                                  fontFamily: "nougat",
-                                                  fontSize: 20,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: <Widget>[
-                                              TextBorderWidget(
-                                                text: "Class: ",
-                                                fontSize: 17,
-                                                colorFore: Color.fromRGBO(
-                                                    115, 203, 241, 1),
-                                              ),
-                                              Text(
-                                                data[idx]['class']['name'],
-                                                style: TextStyle(
-                                                  fontFamily: "nougat",
-                                                  fontSize: 20,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    trailing: Image.network(
-                                      data[idx]['imageUrl'],
-                                      scale: 1,
-                                      width: 50,
-                                      height: 50,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                        }
-                        return Center(child: CircularProgressIndicator());
-                      },
-                    ),
-                  ],
+            ),
+            Tab(
+              child: Text(
+                'Modos de juego',
+                style: TextStyle(
+                  color: Color.fromRGBO(250, 188, 59, .8),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  fontFamily: "nougat",
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
+        ),
+        body: TabBarView(
+          controller: _tabController,
+          children: <Widget>[
+            BrawlersPage(),
+            GameModesPages(),
+          ],
         ),
       ),
     );

@@ -179,6 +179,7 @@ packages:
     version: "4.0.0"
   intl:
     dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -365,7 +366,7 @@ packages:
     source: hosted
     version: "0.4.2"
   translator:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: translator
       url: "https://pub.dartlang.org"

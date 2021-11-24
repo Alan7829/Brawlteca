@@ -1,4 +1,9 @@
-import 'package:brawlteca/bloc/events_bloc.dart';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
+
+import 'package:brawlteca/src/pages/brawlers_page.dart';
+import 'package:brawlteca/src/pages/current_events_page.dart';
+import 'package:brawlteca/src/pages/gamemodes_page.dart';
+import 'package:brawlteca/src/pages/upcoming_events_page.dart';
 import 'package:flutter/material.dart';
 
 class EventsPage extends StatefulWidget {
@@ -8,118 +13,55 @@ class EventsPage extends StatefulWidget {
   _EventsPageState createState() => _EventsPageState();
 }
 
-class _EventsPageState extends State<EventsPage> {
-  final bloc = EventsBloc();
+class _EventsPageState extends State<EventsPage> with TickerProviderStateMixin {
+  late TabController _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(26, 56, 102, 1),
-      body: SingleChildScrollView(
-          padding: EdgeInsets.all(5),
-          child: Center(
-            child: Column(children: <Widget>[
-              _cardEvent(),
-              _cardEvent1(),
-              _cardEvent2(),
-              _cardEvent3(),
-              _cardEvent4()
-            ]),
-          )),
+    final screen = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color.fromRGBO(26, 56, 102, 1),
+        appBar: TabBar(
+          controller: _tabController,
+          tabs: <Widget>[
+            Tab(
+              child: Text(
+                'Eventos Actuales',
+                style: TextStyle(
+                  color: Color.fromRGBO(250, 188, 59, .8),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  fontFamily: "nougat",
+                ),
+              ),
+            ),
+            Tab(
+              child: Text(
+                'Eventos Próximos',
+                style: TextStyle(
+                  color: Color.fromRGBO(250, 188, 59, .8),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  fontFamily: "nougat",
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: TabBarView(
+          controller: _tabController,
+          children: <Widget>[
+            CurrentEventsPage(),
+            UpcomingEventsPage(),
+          ],
+        ),
+      ),
     );
   }
-}
-
-Widget _cardEvent() {
-  return Card(
-    color: Color.fromRGBO(26, 56, 102, 1),
-    elevation: 0,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    child: Column(children: <Widget>[
-      ClipRRect(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        child: Image.network(
-          'https://brawlroyale.com/wp-content/uploads/2020/08/Modo-de-juego-atrapa-gemas.jpg',
-          width: 500,
-          height: 200,
-        ),
-      ),
-    ]),
-  );
-}
-
-Widget _cardEvent1() {
-  return Card(
-    color: Color.fromRGBO(26, 56, 102, 1),
-    elevation: 0,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    child: Column(children: <Widget>[
-      ClipRRect(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        child: Image.network(
-          'https://cdn.ligadegamers.com/imagenes/0-supervivencia.jpg',
-          width: 500,
-          height: 200,
-        ),
-      ),
-    ]),
-  );
-}
-
-Widget _cardEvent2() {
-  return Card(
-    color: Color.fromRGBO(26, 56, 102, 1),
-    elevation: 0,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    child: Column(children: <Widget>[
-      ClipRRect(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        child: Image.network(
-          'https://cdn.ligadegamers.com/imagenes/0-balon-brawl-0.jpg',
-          width: 500,
-          height: 200,
-        ),
-      ),
-    ]),
-  );
-}
-
-Widget _cardEvent3() {
-  return Card(
-    color: Color.fromRGBO(26, 56, 102, 1),
-    elevation: 0,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    child: Column(children: <Widget>[
-      ClipRRect(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        child: Image.network(
-          'https://brawlroyale.com/wp-content/uploads/2020/08/Modo-de-juego-atraco.jpg',
-          width: 500,
-          height: 200,
-        ),
-      ),
-    ]),
-  );
-}
-
-Widget _cardEvent4() {
-  return Card(
-    color: Color.fromRGBO(26, 56, 102, 1),
-    elevation: 0,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    child: Column(children: <Widget>[
-      ClipRRect(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        child: Image.network(
-          'https://cdn.ligadegamers.com/imagenes/0-caza-estelar-0.jpg',
-          width: 500,
-          height: 200,
-        ),
-      ),
-    ]),
-  );
 }
