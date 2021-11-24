@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:brawlteca/tools/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -11,7 +13,7 @@ class LoginBloc {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       // Obtain the auth details from the request
       final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+          await googleUser!.authentication;
 
       // Create a new credential
       final credential = GoogleAuthProvider.credential(
@@ -19,11 +21,12 @@ class LoginBloc {
         idToken: googleAuth?.idToken,
       );
 
-      _prefs.setNombre = googleUser!.displayName;
+      _prefs.setNombre = googleUser.displayName;
       _prefs.setFoto = googleUser.photoUrl;
       _prefs.setEmail = googleUser.email;
       return true;
     } catch (e) {
+      print(e);
       return false;
     }
 
