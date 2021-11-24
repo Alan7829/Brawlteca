@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "833191905097",
+    "project_id": "brawlteca-id",
+    "storage_bucket": "brawlteca-id.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833191905097:android:6676e94ce7291f40073c98",
+        "android_client_info": {
+          "package_name": "com.example.brawlteca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833191905097-epkpbjip1c59tl6tthm8jl3pc8bqlqt2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.brawlteca",
+            "certificate_hash": "9daadac8353f08e8c393b15ba2672069c1d46394"
+          }
+        },
+        {
+          "client_id": "833191905097-ju4ip0h77k2vjrkb940e0vui6gjlfbno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjwS3q4nOSCnlfk9YX2gpXMHJLMxWyoyU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833191905097-ju4ip0h77k2vjrkb940e0vui6gjlfbno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
