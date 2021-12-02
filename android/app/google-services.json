@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "833191905097-epkpbjip1c59tl6tthm8jl3pc8bqlqt2.apps.googleusercontent.com",
+          "client_id": "833191905097-a2fvldjidvl7idlj88sjlkpfht8ii30u.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.brawlteca",
-            "certificate_hash": "9daadac8353f08e8c393b15ba2672069c1d46394"
+            "certificate_hash": "1289082c4792dc9dfb9a1deea8e1c3ebfdd555a0"
           }
         },
         {

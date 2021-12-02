@@ -93,14 +93,14 @@ class _MainPageState extends State<MainPage> {
   Widget _callPage(int currentPage) {
     switch (currentPage) {
       case 0:
-        return const PlayerPage();
+        return PlayerPage();
       case 1:
         return const WikiPage();
       case 2:
         return const EventsPage();
 
       default:
-        return const PlayerPage();
+        return PlayerPage();
     }
   }
 }
