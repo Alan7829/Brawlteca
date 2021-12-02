@@ -5,17 +5,15 @@ import 'package:brawlteca/bloc/login_bloc.dart';
 import 'package:brawlteca/tools/shared_preferences.dart';
 import 'package:brawlteca/widgets/text_border.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class PlayerPage extends StatefulWidget {
-  const PlayerPage({Key? key}) : super(key: key);
+class PlayerPage extends StatelessWidget {
+  PlayerPage({ Key? key }) : super(key: key);
 
-  @override
-  _PlayerPageState createState() => _PlayerPageState();
-}
-
-class _PlayerPageState extends State<PlayerPage> {
   final _prefs = PreferenciasUsuario.instance;
   final log = LoginBloc();
+  final _url =
+      'https://docs.google.com/forms/d/e/1FAIpQLSdX_NA6aJyTK5PlkCbNCor5bUo7UObQz-17fvPveAbfBFgdUw/viewform';
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class _PlayerPageState extends State<PlayerPage> {
                 GestureDetector(
                   onTap: () {
                     log.signOut();
-                    Navigator.pop(context);
+                    Navigator.restorablePopAndPushNamed(context, 'login');
                   },
                   child: Row(
                     children: <Widget>[
@@ -92,6 +90,7 @@ class _PlayerPageState extends State<PlayerPage> {
                             child: Image.network(
                               foto,
                               fit: BoxFit.contain,
+                              scale: 1,
                               height: 150,
                               width: 150,
                             ),
@@ -147,13 +146,29 @@ class _PlayerPageState extends State<PlayerPage> {
             Container(
               child: Image.asset(
                 'assets/saludo.png',
-                width: 290,
-                height: 290,
+                width: 230,
+                height: 230,
+              ),
+            ),
+            Container(
+              child: ElevatedButton(
+                child: Text(
+                  'Evaluanos!',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: "Nougat",
+                  ),
+                ),
+                onPressed: _launchURL,
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _launchURL() async {
+    if (!await launch(_url)) throw 'Could not launch $_url';
   }
 }
