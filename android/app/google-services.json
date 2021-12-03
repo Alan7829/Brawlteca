@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "833191905097-a2fvldjidvl7idlj88sjlkpfht8ii30u.apps.googleusercontent.com",
+          "client_id": "833191905097-68abo5843pmbbc1a88erfc1bak8u7q6k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.brawlteca",
+            "certificate_hash": "9daadac8353f08e8c393b15ba2672069c1d46394"
+          }
+        },
+        {
+          "client_id": "833191905097-j5jd6qs2k88bupe96r3dc6en69jrcg4i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.brawlteca",
